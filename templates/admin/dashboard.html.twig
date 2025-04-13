@@ -1,0 +1,34 @@
+{% extends '@EasyAdmin/page/content.html.twig' %}
+
+{% block title %}Liste Atelier{% endblock %}
+
+{% block content %}
+    <main class="d-flex flex-column">
+
+        <section class="d-flex flex-column">
+            <h1>Bienvenue au sein de l'administration de Nation-Sounds</h1>
+            <p>Tout les outils pour piloter le site de Nation-Sounds en toute simplicité!<p>
+        </section>
+
+        <div class="d-flex flex-wrap container">
+
+            <section id="mailer" class="d-flex flex-row">
+                <img src="/images/megaphone.png" width="100px" height="100px">
+                <div class="d-flex flex-column">
+                    <h2>Demande de contact</h2>
+                    <a href="https://mailtrap.io/inboxes">Acceder à la boite mail</a>
+                </div>
+            </section>
+
+            <section class="d-flex flex-row">
+                <img src="/images/ns_mascotte.png" width="100px" height="90px">
+                <div class="d-flex flex-column">
+                    <h2>Acceder au site</h2>
+                    <a href="/">Nation-Sounds Festival</a>
+                </div>
+            </section>
+        </div>
+
+    </main>
+
+{% endblock %}

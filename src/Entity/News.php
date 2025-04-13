@@ -5,8 +5,13 @@ namespace App\Entity;
 use App\Repository\NewsRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Attribute\Groups;
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\Serializer\Attribute\MaxDepth;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 #[ORM\Entity(repositoryClass: NewsRepository::class)]
+#[Vich\Uploadable]
 class News
 {
     #[ORM\Id]

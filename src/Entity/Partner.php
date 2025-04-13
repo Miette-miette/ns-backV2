@@ -5,8 +5,13 @@ namespace App\Entity;
 use App\Repository\PartnerRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Attribute\Groups;
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\Serializer\Attribute\MaxDepth;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 #[ORM\Entity(repositoryClass: PartnerRepository::class)]
+#[Vich\Uploadable]
 class Partner
 {
     #[ORM\Id]

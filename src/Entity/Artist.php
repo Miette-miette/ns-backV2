@@ -5,8 +5,13 @@ namespace App\Entity;
 use App\Repository\ArtistRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Attribute\Groups;
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\Serializer\Attribute\MaxDepth;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 #[ORM\Entity(repositoryClass: ArtistRepository::class)]
+#[Vich\Uploadable]
 class Artist
 {
     #[ORM\Id]
@@ -26,7 +31,7 @@ class Artist
     #[ORM\Column(length: 255)]
     private ?string $img = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $updatedAt = null;
 
     public function getId(): ?int

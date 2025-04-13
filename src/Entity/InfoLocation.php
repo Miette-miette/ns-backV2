@@ -5,8 +5,13 @@ namespace App\Entity;
 use App\Repository\InfoLocationRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Attribute\Groups;
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\Serializer\Attribute\MaxDepth;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 #[ORM\Entity(repositoryClass: InfoLocationRepository::class)]
+#[Vich\Uploadable]
 class InfoLocation
 {
     #[ORM\Id]
@@ -101,14 +106,14 @@ class InfoLocation
         return $this->imageFile;
     }
 
-    public function setImageName(?string $img): void
+    public function setImageName(?string $img_location): void
     {
-        $this->img = $img;
+        $this->img_location = $img_location;
     }
 
     public function getImageName(): ?string
     {
-        return $this->img;
+        return $this->img_location;
     }
 
     public function getImgLocation(): ?string
