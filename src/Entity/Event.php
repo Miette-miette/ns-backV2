@@ -29,6 +29,9 @@ class Event
     #[ORM\Column(type: Types::TIME_MUTABLE)]
     private ?\DateTimeInterface $end_time = null;
 
+    #[ORM\ManyToOne(inversedBy: 'events')]
+    private ?Location $location = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -90,6 +93,18 @@ class Event
     public function setEndTime(\DateTimeInterface $end_time): static
     {
         $this->end_time = $end_time;
+
+        return $this;
+    }
+
+    public function getLocation(): ?Location
+    {
+        return $this->location;
+    }
+
+    public function setLocation(?Location $location): static
+    {
+        $this->location = $location;
 
         return $this;
     }
