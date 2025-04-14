@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier mes informations{% endblock %}
+
+{% block body %}
+    <main class="pages">
+        {% for message in app.flashes('warning')%}
+            <div class="alert alert-warning">
+                {{message}}
+            </div>
+        {% endfor %}
+            
+        <div class="container wrapper">
+
+            <div class="d-flex flex-row justify-content-center align-items-center">
+                <img src="/images/happyfleur1.png" class="decoTitreShake"/>
+                <h1>Modififier mes informations</h1>
+                <img src="/images/happyfleur1.png" class="decoTitreShake"/>
+            </div>
+            
+            {{form(form)}}
+        </div>
+    </main>
+        
+{% endblock %}

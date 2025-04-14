@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Contact{% endblock %}
+
+{% block body %}
+
+    <main class="pages">
+        {% for message in app.flashes('success')%}
+            <div class="alert alert-success">
+                {{message}}
+            </div>
+        {% endfor %}
+        <div class="container wrapper">
+
+            <div class="d-flex flex-row justify-content-center align-items-center">
+                <img src="/images/megaphone.png" class="decoTitreShake"/>
+                <h1>Formulaire de contact</h1>
+                <img src="/images/megaphone.png" class="decoTitreShake"/>
+            </div>
+            
+            {{form(form)}}
+            
+        </div>
+    </main>
+    
+{% endblock %}
