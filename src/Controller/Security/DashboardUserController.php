@@ -16,7 +16,7 @@ class DashboardUserController extends AbstractController
     ) {
     }
     
-    #[Route('/utilisateur/dashboard/{id}', name: 'app_dashboard_user')]
+    /*#[Route('/utilisateur/dashboard/{id}', name: 'app_dashboard_user')]
     public function index(#[CurrentUser()] ?User $user): Response
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
@@ -32,7 +32,7 @@ class DashboardUserController extends AbstractController
             }
             
         }   
-    }
+    }*/
     
         
 }

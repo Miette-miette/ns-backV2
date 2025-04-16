@@ -14,7 +14,9 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TimeField;
 use Vich\UploaderBundle\Form\Type\VichImageType;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
+#[IsGranted('ROLE_EDITOR')]
 class InfoLocationCrudController extends AbstractCrudController
 {
     public static function getEntityFqcn(): string
@@ -40,7 +42,6 @@ class InfoLocationCrudController extends AbstractCrudController
             AssociationField::new('name',"Nom du lieu"),
             TimeField::new('opening',"Heure de début"),
             TimeField::new('closing',"Heure de fin"),
-            TextField::new('type',"Type de lieu"),
             TextareaField::new('description',"Description")
                 ->hideOnIndex(),
                 TextField::new('imageFile')->setFormType(VichImageType::class)

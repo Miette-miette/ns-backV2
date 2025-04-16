@@ -2,9 +2,11 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Alert;
 use App\Entity\Contact;
 use App\Entity\News;
 use App\Entity\Partner;
+use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 
@@ -26,6 +28,16 @@ class AppFixtures extends Fixture
     }
     public function load(ObjectManager $manager): void
     {
+        //ALERTS
+        $alerts = [];
+        for ($i = 0; $i < 10; $i++) {
+            $alert = new Alert();
+            $alert->setType($this->faker->name())
+                ->setMessage($this->faker->text());
+
+            $alerts[] = $alert;
+            $manager->persist($alert);
+        }
         
         //CONTACT
         $contacts = [];
@@ -65,6 +77,48 @@ class AppFixtures extends Fixture
 
             $partners[] = $partner;
             $manager->persist($partner);
+        }
+
+        //USERS
+        $admin = new User();
+        $admin->setFirstName('Administrateur de Nation-Sounds')
+                ->setLastName(null)
+                ->setEmail('admin@ns.com')
+                ->setRoles(['ROLE_USER','ROLE_EDITOR','ROLE_ADMIN'])
+                ->setPlainPassword('password')
+                ->setCreatedAt(new \DateTimeImmutable())
+                ->setUpdatedAt(new \DateTimeImmutable());
+
+        $manager->persist($admin);
+
+        $editor = new User();
+        $editor->setFirstName('Editeur')
+                ->setLastName(null)
+                ->setEmail('editor@ns.com')
+                ->setRoles(['ROLE_USER','ROLE_EDITOR'])
+                ->setPlainPassword('password')
+                ->setCreatedAt(new \DateTimeImmutable())
+                ->setUpdatedAt(new \DateTimeImmutable());
+
+        $manager->persist($editor);
+
+        $users = [];
+        for ($i = 0; $i < 10; $i++) {
+            $user = new User();
+            $user->setFirstName($this->faker->name())
+                ->setLastName(mt_rand(0, 1) === 1 ? $this->faker->firstName() : null)
+                ->setEmail($this->faker->email())
+                ->setRoles(['ROLE_USER'])
+                ->setCreatedAt(new \DateTimeImmutable())
+                ->setUpdatedAt(new \DateTimeImmutable());
+
+            $hashPassword = $this->hasher->hashPassword(
+                $user,
+                'password'
+            );
+            $user->setPassword($hashPassword);
+            $users[] = $user;
+            $manager->persist($user);
         }
 
         $manager->flush();
