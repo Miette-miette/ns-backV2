@@ -17,20 +17,25 @@ class InfoLocation
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups(['api_location'])]
     private ?int $id = null;
 
+    #[Groups(['api_location'])]
     #[ORM\Column(type: Types::TIME_MUTABLE)]
     private ?\DateTimeInterface $opening = null;
 
+    #[Groups(['api_location'])]
     #[ORM\Column(type: Types::TIME_MUTABLE)]
     private ?\DateTimeInterface $closing = null;
 
+    #[Groups(['api_location'])]
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $description = null;
 
     #[Vich\UploadableField(mapping: 'ns_location', fileNameProperty: 'imageName' )]
     private ?File $imageFile = null;
 
+    #[Groups(['api_location'])]
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $img_location = null;
 

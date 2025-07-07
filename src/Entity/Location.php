@@ -19,26 +19,35 @@ class Location
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups(['api_location'])]
     private ?int $id = null;
 
+    #[Groups(['api_event','api_location'])]
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
+    #[Groups(['api_location'])]
     #[ORM\Column(length: 255)]
     private ?string $type = null;
 
-    #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 10)]
+    #[Groups(['api_location'])]
+    #[ORM\Column(type: Types::DECIMAL, precision: 20, scale: 16)]
     private ?string $lat = null;
 
-    #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 10)]
+    #[Groups(['api_location'])]
+    #[ORM\Column(type: Types::DECIMAL, precision: 20, scale: 16)]
     private ?string $lng = null;
 
+    #[Groups(['api_location'])]
     #[Vich\UploadableField(mapping: 'ns_icon', fileNameProperty: 'imageName' )]
     private ?File $imageFile = null;
 
+    #[Groups(['api_location'])]
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $icon = null;
 
+    #[Groups(['api_location'])]
+    #[MaxDepth(1)]
     #[ORM\OneToOne(mappedBy: 'name', cascade: ['persist', 'remove'])]
     private ?InfoLocation $infoLocation = null;
 
@@ -210,6 +219,6 @@ class Location
 
     public function __toString()
     {
-        return $this->type;
+        return $this->name;
     }
 }

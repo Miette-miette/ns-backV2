@@ -44,7 +44,7 @@ class InfoLocationCrudController extends AbstractCrudController
             TimeField::new('closing',"Heure de fin"),
             TextareaField::new('description',"Description")
                 ->hideOnIndex(),
-                TextField::new('imageFile')->setFormType(VichImageType::class)
+            TextField::new('imageFile')->setFormType(VichImageType::class)
                 ->onlyOnForms(),
             ImageField::new('imageName', "Image")->setBasePath('/images/location')->setUploadDir('/public/images/location')
                 ->onlyOnIndex(),

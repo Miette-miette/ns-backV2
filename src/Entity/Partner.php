@@ -7,6 +7,7 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Attribute\Groups;
 use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\Serializer\Annotation\SerializedName;
 use Symfony\Component\Serializer\Attribute\MaxDepth;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
@@ -34,8 +35,19 @@ class Partner
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $imgPartner = null;
 
+
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $updatedAt = null;
+
+    #[SerializedName('imgUrl')]
+    public function getImgUrl(): ?string
+    {
+        if (!$this->imgPartner) {
+            return null;
+        }
+
+        return '/images/partner/' . $this->imgPartner;
+    }
 
     public function getId(): ?int
     {
@@ -124,4 +136,5 @@ class Partner
 
         return $this;
     }
+
 }

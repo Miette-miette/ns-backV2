@@ -7,6 +7,7 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Attribute\Groups;
 use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\Serializer\Annotation\SerializedName;
 use Symfony\Component\Serializer\Attribute\MaxDepth;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
@@ -19,20 +20,34 @@ class Artist
     #[ORM\Column]
     private ?int $id = null;
 
+    #[Groups(['api_event'])]
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $biography = null;
 
+    #[Groups(['api_event'])]
     #[Vich\UploadableField(mapping: 'ns_artist', fileNameProperty: 'imageName' )]
     private ?File $imageFile = null;
 
+    #[Groups(['api_event'])]
     #[ORM\Column(length: 255)]
     private ?string $img = null;
 
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $updatedAt = null;
+
+    #[Groups(['api_event'])]
+    #[SerializedName('imgUrl')]
+    public function getImgUrl(): ?string
+    {
+        if (!$this->img) {
+            return null;
+        }
+
+        return '/images/artist/' . $this->img;
+    }
 
     public function getId(): ?int
     {

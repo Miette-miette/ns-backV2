@@ -2,9 +2,7 @@
 
 namespace App\Controller\API;
 
-
-use App\Entity\Artist;
-use App\Entity\Event;
+use App\Entity\Partner;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -13,15 +11,15 @@ use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Serializer\Normalizer\AbstractObjectNormalizer;
 use Symfony\Component\Serializer\SerializerInterface;
 
-class EventAPIController extends AbstractController
+class PartnerAPIController extends AbstractController
 {
-   #[Route('/api/event', name: 'api_event', methods: ['GET'])]
+   #[Route('/api/partner', name: 'api_partner', methods: ['GET'])]
     public function api(SerializerInterface $serializer, EntityManagerInterface $entityManager): Response
     {
-        $event = $entityManager->getRepository(Event::class)->findAll();
+        $partner = $entityManager->getRepository(Partner::class)->findAll();
 
         return new JsonResponse(
-            $serializer->serialize($event, 'json',["groups" => ['api_event'], AbstractObjectNormalizer::ENABLE_MAX_DEPTH => true] ),
+            $serializer->serialize($partner, 'json'),
             200,
             [],
             true

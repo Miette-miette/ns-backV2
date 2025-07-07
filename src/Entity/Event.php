@@ -5,30 +5,38 @@ namespace App\Entity;
 use App\Repository\EventRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Attribute\Groups;
 
 #[ORM\Entity(repositoryClass: EventRepository::class)]
 class Event
 {
+    #[Groups(['api_event'])]
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
 
+    #[Groups(['api_event'])]
     #[ORM\Column(length: 255)]
     private ?string $type = null;
 
+    #[Groups(['api_event'])]
     #[ORM\OneToOne(cascade: ['persist', 'remove'])]
     private ?Artist $artist = null;
 
+    #[Groups(['api_event'])]
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $date = null;
 
+    #[Groups(['api_event'])]
     #[ORM\Column(type: Types::TIME_MUTABLE)]
     private ?\DateTimeInterface $begin_time = null;
 
+    #[Groups(['api_event'])]
     #[ORM\Column(type: Types::TIME_MUTABLE)]
     private ?\DateTimeInterface $end_time = null;
 
+    #[Groups(['api_event'])]
     #[ORM\ManyToOne(inversedBy: 'events')]
     private ?Location $location = null;
 

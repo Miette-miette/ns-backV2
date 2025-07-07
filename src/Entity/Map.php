@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\MapRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: MapRepository::class)]
 class Map
@@ -14,10 +15,12 @@ class Map
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 10)]
+    #[Groups(['api_location'])]
+    #[ORM\Column(type: Types::DECIMAL, precision: 20, scale: 16)]
     private ?string $lat = null;
 
-    #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 10)]
+    #[Groups(['api_location'])]
+    #[ORM\Column(type: Types::DECIMAL, precision: 20, scale: 16)]
     private ?string $lng = null;
 
     public function getId(): ?int
