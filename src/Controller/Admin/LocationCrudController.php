@@ -5,6 +5,7 @@ namespace App\Controller\Admin;
 use App\Entity\Location;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\NumberField;
@@ -39,7 +40,12 @@ class LocationCrudController extends AbstractCrudController
             TextField::new('name',"Nom du lieu"),
             NumberField::new('lat',"Latittude"),
             NumberField::new('lng',"Longitude"),
-            TextField::new('type',"Type de lieu"),
+            ChoiceField::new('type', "Type de lieu")->setChoices([
+                'Scène' => 'scène',
+                'Information' => 'information',
+                'Restauration' => 'restauration',
+                'WC' => 'wc'
+            ]),
             TextField::new('imageFile')->setFormType(VichImageType::class)
                 ->onlyOnForms(),
             ImageField::new('imageName', "Image")->setBasePath('/images/icon')->setUploadDir('/public/images/icon')

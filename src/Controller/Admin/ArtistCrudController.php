@@ -30,7 +30,9 @@ class ArtistCrudController extends AbstractCrudController
             TextField::new('name', "Nom de l'artiste/groupe"),
             TextareaField::new('biography',"Description")
                 ->hideOnIndex(),
-                TextField::new('imageFile')->setFormType(VichImageType::class)
+            TextareaField::new('spotify_link',"Lien Spotify (si existant)")
+                ->hideOnIndex(),
+            TextField::new('imageFile')->setFormType(VichImageType::class)
                 ->onlyOnForms(),
             ImageField::new('imageName', "Image")->setBasePath('/images/artist')->setUploadDir('/public/images/artiste')
                 ->onlyOnIndex(),

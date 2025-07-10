@@ -9,6 +9,7 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Attribute\Groups;
 use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\Serializer\Annotation\SerializedName;
 use Symfony\Component\Serializer\Attribute\MaxDepth;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
@@ -50,6 +51,17 @@ class Location
     #[MaxDepth(1)]
     #[ORM\OneToOne(mappedBy: 'name', cascade: ['persist', 'remove'])]
     private ?InfoLocation $infoLocation = null;
+
+    #[Groups(['api_location'])]
+    #[SerializedName('imgUrl')]
+    public function getImgUrl(): ?string
+    {
+        if (!$this->icon) {
+            return null;
+        }
+
+        return '/images/icon/' . $this->icon;
+    }
 
     /**
      * @var Collection<int, Event>

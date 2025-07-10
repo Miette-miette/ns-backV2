@@ -7,6 +7,7 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Attribute\Groups;
 use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\Serializer\Annotation\SerializedName;
 use Symfony\Component\Serializer\Attribute\MaxDepth;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
@@ -14,6 +15,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 #[Vich\Uploadable]
 class InfoLocation
 {
+    
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
@@ -21,11 +23,11 @@ class InfoLocation
     private ?int $id = null;
 
     #[Groups(['api_location'])]
-    #[ORM\Column(type: Types::TIME_MUTABLE)]
+    #[ORM\Column(type: Types::TIME_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $opening = null;
 
     #[Groups(['api_location'])]
-    #[ORM\Column(type: Types::TIME_MUTABLE)]
+    #[ORM\Column(type: Types::TIME_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $closing = null;
 
     #[Groups(['api_location'])]
@@ -44,6 +46,17 @@ class InfoLocation
 
     #[ORM\Column]
     private ?\DateTimeImmutable $updatedAt = null;
+
+    #[Groups(['api_location'])]
+    #[SerializedName('imgUrl')]
+    public function getImgUrl(): ?string
+    {
+        if (!$this->img_location) {
+            return null;
+        }
+
+        return '/images/location/' . $this->img_location;
+    }
 
     public function getId(): ?int
     {

@@ -18,12 +18,14 @@ class Artist
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups(['api_event'])]
     private ?int $id = null;
 
     #[Groups(['api_event'])]
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
+    #[Groups(['api_event'])]
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $biography = null;
 
@@ -37,6 +39,10 @@ class Artist
 
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $updatedAt = null;
+
+    #[Groups(['api_event'])]
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $spotify_link = null;
 
     #[Groups(['api_event'])]
     #[SerializedName('imgUrl')]
@@ -128,5 +134,17 @@ class Artist
     public function __toString()
     {
         return $this->name;
+    }
+
+    public function getSpotifyLink(): ?string
+    {
+        return $this->spotify_link;
+    }
+
+    public function setSpotifyLink(?string $spotify_link): static
+    {
+        $this->spotify_link = $spotify_link;
+
+        return $this;
     }
 }

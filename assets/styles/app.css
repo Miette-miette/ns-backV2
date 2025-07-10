@@ -1,3 +1,187 @@
+@import url('https://fonts.googleapis.com/css2?family=Afacad:ital,wght@0,400..700;1,400..700&family=Caprasimo&display=swap');
+
+/* BASE */
+
 body {
-    background-color: skyblue;
+  background-color: #FFE3B0;
+  overflow-x: hidden;
+  width: 100vw;
+  font-family: "Afacad", sans-serif;
+  color: #3f292e;
 }
+
+main, #main {
+  padding: 5% 20%;
+  background-position: top;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+/* FONTS */
+
+h1, h2, h3, .title {
+  font-family: "Caprasimo", serif;
+  font-style: normal;
+  text-align: center;
+  color: #3f292e;
+  filter: drop-shadow(4px 4px 0px beige);
+  z-index: 2;
+}
+
+h1 {
+  font-size: 4rem;
+  font-weight: 500;
+}
+
+h3 {
+  font-family: "Afacad", sans-serif;
+}
+
+p, label {
+  font-size: 18px;
+  margin-bottom: 2px;
+}
+
+a {
+  color: beige;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #E47161;
+}
+
+.link-orange {
+    color: #E47161;
+}
+
+.link-orange:hover {
+    color: #3f292e;
+}
+
+/* WRAPPERS */
+
+.wrapper-beige {
+    background-color: beige;
+    padding: 6% ;
+    border-style: solid;
+    border-color: #492E34;
+    border-radius: 8px;
+    filter: drop-shadow(2px 4px 4px #492E34);
+}
+
+/* BUTTONS */
+
+button, .button-style {
+  background-color: #E47161;
+  padding: 2%;
+  margin: 1%;
+  border-radius: 8px;
+  border: 2px solid #492E34;
+  color: beige;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  font-family: "Afacad", sans-serif;
+  filter: drop-shadow(2px 4px 4px #492E34);
+}
+
+button:hover, .button-style:hover,
+.active {
+  background-color: #8f505e;
+}
+
+/* ANIMATIONS */
+
+@keyframes logoRotation {
+  0% { transform: rotate(0); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes logoShake {
+  0%, 100% { transform: rotate(0deg); transform-origin: 50% 50%; }
+  10% { transform: rotate(8deg); }
+  20%, 40%, 60% { transform: rotate(-10deg); }
+  30%, 50%, 70% { transform: rotate(10deg); }
+  80% { transform: rotate(-8deg); }
+  90% { transform: rotate(8deg); }
+}
+
+@keyframes beats {
+  0% { transform: scale(1); }
+  20% { transform: scale(0.97); }
+  30% { transform: scale(0.99); }
+  43% { transform: scale(0.97); }
+  70% { transform: scale(1); }
+}
+
+/* UTILITAIRES */
+
+.shadow-beige {
+  filter: drop-shadow(2px 4px 4px #492E34);
+}
+
+.border-style {
+  border-style: solid;
+  border-color: #492E34;
+  border-radius: 8px;
+}
+
+/* DÉCORATION */
+
+.voirPlus {
+  width: 15px;
+  height: 25px;
+  rotate: 82deg;
+}
+
+.decoTitre, #progHeader>div>img, .bgRound {
+  animation: logoRotation 35s linear infinite;
+  width: 50px;
+  margin: 20px;
+  overflow: hidden;
+}
+
+.decoTitreShake {
+  animation: logoShake 12s ease-out infinite;
+  width: 40%;
+  margin: 2%;
+  overflow: hidden;
+}
+
+.iconScene,.imgRound {
+  animation: beats 0.6s ease-out infinite;
+}
+
+/* FOOTER */
+
+footer {
+  background: url(/media/background/footerBackground.png) top/cover no-repeat;
+  height: 600px;
+  padding: 10% 0 3% 0;
+  color: beige;
+  filter: drop-shadow(2px 4px 4px #492E34);
+}
+
+#logoFooter>img {
+  margin: 10%;
+  width: 150px;
+  height: 150px;
+  filter: drop-shadow(2px 2px 2px rgb(63, 46, 23));
+}
+
+#logoFooter>div>p:first-of-type,
+footer>div>div>p {
+  font-family: "Caprasimo", serif;
+  font-weight: 400;
+  color: beige;
+}
+
+#logoFooter>div>p:first-of-type { font-size: 30px; }
+footer>div>div>p { font-size: 25px; }
+
+.footerRS { width: 50px; margin: 10px; }
+#informationFooter { width: 600px; }
+#informationFooter>a { margin: 0 5%; }
+
+#footerFleur>img { width: 120px; }
