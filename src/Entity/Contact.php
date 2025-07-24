@@ -26,7 +26,7 @@ class Contact
     #[ORM\Column(type: Types::TEXT)]
     private ?string $message = null;
 
-    #[ORM\Column]
+    #[ORM\Column(type: 'datetime_immutable')]
     private ?\DateTimeImmutable $created_at = null;
 
     public function getId(): ?int
@@ -93,4 +93,9 @@ class Contact
 
         return $this;
     }
+
+    public function __construct()
+{
+    $this->created_at = new \DateTimeImmutable();
+}
 }
