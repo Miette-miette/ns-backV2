@@ -23,7 +23,7 @@ class UserController extends AbstractController
         }
         //verifier si l'id de l'user match
         if($this->getUser()!==$user){
-            return $this->redirect('http://localhost:8000/home');
+            return $this->redirect('http://localhost:3000/home');
         }
 
         $form = $this->createForm(EditUserType::class, $user);
@@ -64,7 +64,7 @@ class UserController extends AbstractController
         }
         //verifier si l'id de l'user match
         if($this->getUser()!==$user){
-            return $this->redirect('http://localhost:8000/home');
+            return $this->redirect('http://localhost:3000/home');
         }
 
         $form = $this->createForm(ChangePasswordFormType::class, $user);

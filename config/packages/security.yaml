@@ -13,7 +13,10 @@ security:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
+ 
         main:
+            pattern: ^/
+            stateless: false 
             lazy: true
             provider: app_user_provider
 
@@ -21,6 +24,7 @@ security:
                 login_path: app_login
                 check_path: app_login
                 enable_csrf: true
+                success_handler: App\Controller\Security\LoginSuccessHandler
 
             logout:
                 path: app_security_logout
@@ -39,6 +43,7 @@ security:
     access_control:
         - { path: ^/admin, roles: ROLE_EDITOR }
         - { path: ^/profile, roles: ROLE_USER }
+        - { path: ^/api/userme, roles: IS_AUTHENTICATED_FULLY }
 
     role_hierarchy:
         ROLE_EDITOR: ROLE_USER

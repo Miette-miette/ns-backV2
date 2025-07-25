@@ -17,25 +17,24 @@ class DashboardUserController extends AbstractController
     }
     
     #[Route('/utilisateur/dashboard/{id}', name: 'app_dashboard_user')]
-    public function index(#[CurrentUser()] ?User $user): Response
+    public function index(int $id, #[CurrentUser()] ?User $user): Response
     {
+         /** @var User|null $user */
+        $user = $this->getUser();
+        
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
     
-        if ($user) {
-            if ($this->security->isGranted('ROLE_ADMIN')){
-                return $this->redirectToRoute('admin_index');
-            }
-            else{
-                return $this->render('security/dashboard_user.html.twig', [
-                    'user' => $user
-                ]);
-            }
-            
-        }
-        
-        else {
+        if (!$user) {
             throw $this->createAccessDeniedException('Utilisateur non authentifié.');
         }
+
+        if ($this->security->isGranted('ROLE_ADMIN')) {
+            return $this->redirectToRoute('admin_index');
+        }
+
+        return $this->render('security/dashboard_user.html.twig', [
+            'user' => $user
+        ]);
     }
     
         

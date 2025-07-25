@@ -25,58 +25,29 @@ final class SecurityController extends AbstractController
     }
 
     #[Route('/connexion', name: 'app_login', methods: ['GET', 'POST'])]
-    public function index(AuthenticationUtils $authenticationUtils, #[CurrentUser] ?User $user,Request $request): Response
+    public function index(AuthenticationUtils $authUtils): Response
     {
-        // if user is already logged in, don't display the login page again
-        // if editor => display the dashboard admin
+        /** @var \App\Entity\User $user */
+        $user = $this->getUser();
+
         if ($user) {
-            if ($user->getRoles() == 'ROLE_EDITOR'){
-
-                $cookie = Cookie::create('user')
-                    ->withValue('log')
-                    ->withHttpOnly(false);
-
-                    $response = new Response();
-                    $response->headers->setCookie($cookie);
-
-                    $response->send();
-
-                return $this->redirectToRoute('admin_index');
-            }
-            else{
-
-                $cookie = Cookie::create('user')
-                ->withValue('log')
-                ->withExpires(0)
-                ->withHttpOnly(false);
-
-                $response = new Response();
-                $response->headers->setCookie($cookie);
-
-                $response->send();
-
-                return $this->redirectToRoute('app_dashboard_user', ['id' => $user->getId()]);
-            }
+            return $this->isGranted('ROLE_EDITOR')
+                ? $this->redirectToRoute('admin_index')
+                : $this->redirectToRoute('app_dashboard_user', ['id' => $user->getId()]);
         }
 
-        $error = $authenticationUtils->getLastAuthenticationError();
-        $lastUsername = $authenticationUtils->getLastUsername();
-
         return $this->render('security/login.html.twig', [
-             'last_username' => $lastUsername,
-             'error' => $error,
+            'last_username' => $authUtils->getLastUsername(),
+            'error' => $authUtils->getLastAuthenticationError(),
         ]);
     }
 
     #[Route('/deconnexion', name: 'app_security_logout')]
-    public function logout(): Response
+    public function logout(): void
     {
-        $response = new Response();
-        $response->headers->clearCookie('user');
-        $response->send();
-
-        return $this->redirect($this->generateUrl('http://localhost:8000/'));
+        throw new \LogicException('This should not be reached.');
     }
+
 
     #[Route('/inscription', name: 'app_registration', methods: ['GET', 'POST'])]
     public function registration(Request $request, EntityManagerInterface $entityManager): Response

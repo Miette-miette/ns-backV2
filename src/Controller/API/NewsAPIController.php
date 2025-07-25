@@ -3,6 +3,7 @@
 namespace App\Controller\API;
 
 use App\Entity\News;
+use App\Repository\NewsRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -20,6 +21,20 @@ class NewsAPIController extends AbstractController
 
         return new JsonResponse(
             $serializer->serialize($news, 'json'),
+            200,
+            [],
+            true
+        );
+        return $this->json($data, Response::HTTP_OK);
+    }
+
+    #[Route('/api/news/{id}', name: 'app_news_api', methods: ['GET'])]
+    public function apiArticle(SerializerInterface $serializer, EntityManagerInterface $entityManager, NewsRepository $repository, int $id): Response
+    {
+        $news = $repository->find($id);
+
+        return new JsonResponse(
+            $serializer->serialize($news, 'json' ),
             200,
             [],
             true
