@@ -12,12 +12,12 @@ class PagesController extends AbstractController
     #[Route('/mentions-legales', name: 'app_legal_notice')]
     public function legal_notice(): Response
     {
-        return $this->render('Pages/mentions-legales.html.twig');
+        return $this->render('pages/mentions-legales.html.twig');
     }
 
     #[Route('/politique_confidentialite', name: 'app_privacy_policy')]
     public function privacy_policy(): Response
     {
-        return $this->render('Pages/privacy-policy.html.twig');
+        return $this->render('pages/privacy-policy.html.twig');
     }
 }

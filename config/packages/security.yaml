@@ -23,7 +23,6 @@ security:
             form_login:
                 login_path: connexion
                 check_path: connexion
-                csrf_token_generator: security.csrf.token_manager
                 csrf_parameter: _csrf_token
                 csrf_token_id: authenticate
                 enable_csrf: true
