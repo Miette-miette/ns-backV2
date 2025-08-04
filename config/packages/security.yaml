@@ -21,8 +21,8 @@ security:
             provider: app_user_provider
 
             form_login:
-                login_path: connexion
-                check_path: connexion
+                login_path: app_login
+                check_path: app_login
                 csrf_parameter: _csrf_token
                 csrf_token_id: authenticate
                 enable_csrf: true
