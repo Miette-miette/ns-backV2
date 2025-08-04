@@ -10,11 +10,15 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 class UserAPIController extends AbstractController
 {
     #[Route('/api/userme', name: 'api_me', methods: ['GET'])]
-#[IsGranted('IS_AUTHENTICATED_REMEMBERED')] 
+
 public function me(): JsonResponse
 {
     /** @var \App\Entity\User|null $user */
     $user = $this->getUser();
+
+    dump($user);
+    dump(get_class($user));
+    die();
 
     if (!$user) {
         return $this->json(['error' => 'Not authenticated'], 401);
