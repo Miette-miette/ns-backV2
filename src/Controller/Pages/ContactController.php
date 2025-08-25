@@ -30,14 +30,14 @@ class ContactController extends AbstractController
             $entityManager->flush();
 
             //Email
-            $email = (new TemplatedEmail())
+            /*$email = (new TemplatedEmail())
                 ->from($contact->getEmail())
                 ->to('admin@nationsounds.com')
                 ->subject($contact->getSubject())
                 ->htmlTemplate('emails/contact.html.twig')
                 ->context(['contact' => $contact]);
 
-            $mailer->send($email);
+            $mailer->send($email);*/
 
             $this->addFlash(
                 'success',
