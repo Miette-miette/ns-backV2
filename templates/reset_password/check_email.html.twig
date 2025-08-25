@@ -4,8 +4,8 @@
 
 {% block body %}
     <p>
-        If an account matching your email exists, then an email was just sent that contains a link that you can use to reset your password.
-        This link will expire in {{ resetToken.expirationMessageKey|trans(resetToken.expirationMessageData, 'ResetPasswordBundle') }}.
+        Si un compte utilisateur est bien relié à cette adresse mail, vous receverez un lien pour réinitialiser votre mot de passe sur celle-ci.
+        Ce lien expirera dans {{ resetToken.expirationMessageKey|trans(resetToken.expirationMessageData, 'ResetPasswordBundle') }}.
     </p>
-    <p>If you don't receive an email please check your spam folder or <a href="{{ path('app_forgot_password_request') }}">try again</a>.</p>
+    <p>Si vous ne recevez pas d'email, vérifier vos courriers indésirables ou <a href="{{ path('app_forgot_password_request') }}">essayer à nouveau</a>.</p>
 {% endblock %}

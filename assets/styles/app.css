@@ -190,7 +190,7 @@ TITRES DECOS
 /* FOOTER */
 
 footer {
-  background: url(/media/background/footerBackground.png) top/cover no-repeat;
+  background: url(../../public/media/background/footerBackground.png) top/cover no-repeat;
   height: 600px;
   padding: 10% 0 3% 0;
   color: beige;

@@ -3,7 +3,13 @@
 {% block title %}Liste Atelier{% endblock %}
 
 {% block content %}
-    <main class="d-flex flex-column">
+    <main class="pages d-flex flex-column">
+
+        <div class="container align-items-center w-100 w-md-75 p-2">
+            <a href="{{ app.request.headers.get('referer') ?: 'http://127.0.0.1:3000/home' }}" class="link-orange h5">
+                ← Revenir à la page précédente
+            </a>
+        </div>
 
         <section class="d-flex flex-column">
             <h1>Bienvenue au sein de l'administration de Nation-Sounds</h1>
