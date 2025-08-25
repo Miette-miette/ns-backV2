@@ -228,7 +228,7 @@ MEDIA QUERIES
 
     /* Global */
 
-    main, #main { padding: 6% var(--container-pad-mobile); }
+    main, #main { padding: 6%; }
     h1 { font-size: clamp(1.8rem, 6vw, 2.2rem); }
     h2 { font-size: clamp(1.8rem, 5vw, 1.6rem); }
     
@@ -248,5 +248,5 @@ MEDIA QUERIES
 @media (min-width: 601px) and (max-width: 1024px) {
 
     /* Global */
-    main, #main { padding: 5% var(--container-pad-tablet); }
+    main, #main { padding: 5%; }
 }
