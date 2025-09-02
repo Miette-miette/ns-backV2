@@ -62,7 +62,7 @@ class RegistrationType extends AbstractType
                 ]
             ])
 
-            ->add('password', RepeatedType::class, [
+            ->add('plainPassword', RepeatedType::class, [
                 'type' => PasswordType::class,
                 'first_options' => [
                     'label' => 'Mot de passe',
@@ -70,7 +70,8 @@ class RegistrationType extends AbstractType
                 'second_options' => [
                     'label' => 'Confirmation du mot de passe'
                 ],
-                'invalid_message' => 'Les mots de passe ne sont pas identiques.'
+                'invalid_message' => 'Les mots de passe ne sont pas identiques.',
+                'mapped' => true, 
             ])
 
             ->add('privacy', CheckboxType::class, [
