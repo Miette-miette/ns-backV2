@@ -17,7 +17,7 @@ class UserAPIController extends AbstractController
         $user = $this->getUser();
 
         if (!$user) {
-            return $this->json(['error' => 'Not authenticated'], 401);
+            return $this->json(['error' => 'Non authentifié'], 401);
         }
 
         try {
