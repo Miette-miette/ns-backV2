@@ -180,9 +180,8 @@ TITRES DECOS
 */
 
 .decoTitre, .decoTitreShake {
-  width: 50px;
+  width: 40px;
   margin: 20px;
-  overflow: hidden;
 }
 .decoTitre { animation: logoRotation 35s linear infinite; }
 .decoTitreShake { animation: logoShake 12s ease-out infinite; }
