@@ -34,7 +34,7 @@ body {
 }
 
 main, #main {
-  padding: 5% 20%;
+  padding: 6%;
   background: top / contain no-repeat;
 }
 
@@ -234,10 +234,21 @@ MEDIA QUERIES
     
     /* Footer */
 
-    footer { padding: 12% 0 6%; height: 900px; }
-    #logoFooter img { width: 90px; height: 90px; }
-    #topFooter{ width: 100%; margin-right: 0;} 
-    #informationFooter{ width: 200px } 
+    footer { 
+      padding: 12% 0 6%; 
+      height: 900px; 
+   }
+
+   #logoFooter img { 
+      width: 90px; 
+      height: 90px; 
+   }
+
+   #topFooter{ 
+      width: 100%; 
+      margin-right: 0;
+   } 
+   #informationFooter{ width: 200px }
 
 }
 
