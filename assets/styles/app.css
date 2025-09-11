@@ -223,7 +223,7 @@ footer>div>div>p { font-size: 25px; }
 MEDIA QUERIES 
 */
 
-@media (max-width: 600px) {
+@media screen and (max-width: 600px) {
 
 
     /* Global */

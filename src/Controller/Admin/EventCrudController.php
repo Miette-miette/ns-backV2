@@ -25,8 +25,8 @@ class EventCrudController extends AbstractCrudController
     public function configureCrud(Crud $crud): Crud
     {
         return $crud
-            ->setEntityLabelInPlural('Evènements')
-            ->setEntityLabelInSingular('Evènement')
+            ->setEntityLabelInPlural('Évènements')
+            ->setEntityLabelInSingular('Évènement')
             ->setPageTitle("index","Nation-Sounds - Administration des évènements")
             ->setPaginatorPageSize(10);
     }
